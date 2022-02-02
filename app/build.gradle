@@ -6,13 +6,32 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.bfr.buddy.jni_demo"
+        applicationId "com.bfr.buddy.jnidemo"
         minSdk 28
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
+        externalNativeBuild {
+            // Note that there are two `cmake` blocks,
+            // see https://stackoverflow.com/questions/47370186/could-not-find-method-cppflags-arguments-for-arguments
+            cmake {
+                targets "demo-jni"
+
+                // Custom flag for enabling log forwarding to Android.
+                arguments "-DCOUT_TO_ANDROID_LOG=ON"
+            }
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    externalNativeBuild {
+        cmake {
+            // Note that there are two `cmake` blocks,
+            // see https://stackoverflow.com/questions/47370186/could-not-find-method-cppflags-arguments-for-arguments
+            path file('CMakeLists.txt')
+        }
     }
 
     buildTypes {
