@@ -1,7 +1,8 @@
 #include "jobjectsconversions.hpp"
 #include <list>
 #include <sstream>
-
+#include <string>
+#include <vector>
 
 namespace {
     std::string _getStringFromMethod(JNIEnv *pEnv, jclass pClass, jobject pOjbect, const char * pFunctionName)
@@ -22,6 +23,19 @@ std::string toString(JNIEnv *env, jstring inputString) {
     std::string string = cstring;
     env->ReleaseStringUTFChars(inputString, cstring);
     return string;
+}
+
+jobjectArray tojstringArray(JNIEnv *env, const std::vector<std::string> &pStrs) {
+    jobjectArray result;
+    result = (jobjectArray) env->NewObjectArray(pStrs.size(),
+                                                env->FindClass("java/lang/String"),
+                                                env->NewStringUTF(""));
+
+    jsize arrayElt = 0;
+    for (const auto &currStr : pStrs)
+        env->SetObjectArrayElement(result, arrayElt++,
+                                   env->NewStringUTF(currStr.c_str()));
+    return result;
 }
 
 

@@ -35,6 +35,8 @@ private:
 
 std::string toString(JNIEnv *env, jstring inputString);
 
+jobjectArray tojstringArray(JNIEnv *env, const std::vector<std::string> &pStrs);
+
 jint toDisposableWithIdId(JNIEnv *env, jobject object);
 
 

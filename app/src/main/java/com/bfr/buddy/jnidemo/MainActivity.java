@@ -20,12 +20,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onButtonClick() {
-        String textToPrint = new String();
-        textToPrint += returnFortyTwo() + "\n";
+        String textToPrint = returnString();
 
         TextView textView = findViewById(R.id.textview);
         textView.setText(textToPrint);
     }
 
-    native public int returnFortyTwo();
+    // Example of a function returning an int
+    static native public int returnFortyTwo();
+
+    // Example of a function taking a string in parameter
+    static native public int addFortyTwo(int value);
+
+    // Example of a function returning a string
+    static native public String returnString();
+
+    // Example of a function returning a string array
+    static native public String[] returnStringArray();
+
+    // Exemple a function take a custom class in parameter
+    static native public DummyData readCustomData(DummyData dummyData);
+
+
+    static native public DummyObject createCustomObject(int value);
+
 }
