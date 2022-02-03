@@ -27,21 +27,6 @@ static const std::vector<std::string> _exampleOfEnum_toStr = {
 };
 #undef ADD_EXAMPLEOFENUM
 
-#define ADD_EXAMPLEOFENUM(a, b) {b, ExampleOfEnum::a},
-static const std::map<std::string, ExampleOfEnum> _exampleOfEnum_fromStr = {
-        EXAMPLEOFENUM_TABLE
-};
-#undef ADD_EXAMPLEOFENUM
-
-
-static inline ExampleOfEnum semanticVerbTense_fromStr(const std::string& pExampleOfEnumStr)
-{
-    auto it = _exampleOfEnum_fromStr.find(pExampleOfEnumStr);
-    if (it != _exampleOfEnum_fromStr.end())
-        return it->second;
-    assert(false);
-    return ExampleOfEnum::VALUE_1;
-}
 
 static inline std::string semanticVerbTense_toStr(ExampleOfEnum pExampleOfEnum)
 {

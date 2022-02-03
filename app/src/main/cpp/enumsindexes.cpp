@@ -6,8 +6,8 @@
 
 namespace {
     static const std::map<std::string, ExampleOfEnum> _javaToCppPartOfExampleOfEnum{
-            {"VALUE_1",         ExampleOfEnum::VALUE_1},
-            {"VALUE_2",         ExampleOfEnum::VALUE_2}
+            {semanticVerbTense_toStr(ExampleOfEnum::VALUE_1),         ExampleOfEnum::VALUE_1},
+            {semanticVerbTense_toStr(ExampleOfEnum::VALUE_2),         ExampleOfEnum::VALUE_2}
     };
 
     int _getOrdinal(

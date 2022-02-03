@@ -48,6 +48,7 @@ public class JNITestsTest {
         DummyData dummyData = MainActivity.readCustomData(new DummyData(2, "val_str", ExampleOfEnum.VALUE_2));
         assertEquals(3, dummyData.i);
         assertEquals("val_str_cpp_addition", dummyData.str);
+        assertEquals(ExampleOfEnum.VALUE_2, dummyData.exampleOfEnum);
     }
 
     @Test
