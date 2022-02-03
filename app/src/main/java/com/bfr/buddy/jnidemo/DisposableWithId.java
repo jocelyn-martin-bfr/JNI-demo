@@ -17,12 +17,12 @@ public abstract class DisposableWithId {
         return id;
     }
 
-    void dispose() {
+    public void dispose() {
         if (!isDisposed) {
-            disposeImplementation(id);
+            disposeImplementation();
             isDisposed = true;
         }
     }
 
-    abstract void disposeImplementation(int id);
+    abstract void disposeImplementation();
 }

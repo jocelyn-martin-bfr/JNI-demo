@@ -9,10 +9,12 @@ public class DummyData {
 
     public int i;
     public String str;
+    public ExampleOfEnum exampleOfEnum;
 
-    public DummyData(int pI, String pStr) {
+    public DummyData(int pI, String pStr, ExampleOfEnum pExampleOfEnum) {
         i = pI;
         str = pStr;
+        exampleOfEnum = pExampleOfEnum;
     }
 
     int getI() {
@@ -21,5 +23,9 @@ public class DummyData {
 
     String getStr() {
         return str;
+    }
+
+    ExampleOfEnum getExampleOfEnum() {
+        return exampleOfEnum;
     }
 }

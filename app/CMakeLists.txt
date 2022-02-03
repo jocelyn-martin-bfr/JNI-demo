@@ -27,9 +27,15 @@ if (ANDROID)
 
           # Provides a relative path to your source file(s).
           "src/main/cpp/androidlog.hpp"
+          "src/main/cpp/dummydata.hpp"
+          "src/main/cpp/dummyobject.hpp"
+          "src/main/cpp/enumsindexes.hpp"
+          "src/main/cpp/enumsindexes.cpp"
+          "src/main/cpp/exampleofenum.hpp"
           "src/main/cpp/jni-functions.cpp"
           "src/main/cpp/jobjectsconversions.hpp"
           "src/main/cpp/jobjectsconversions.cpp"
+          "src/main/cpp/util.hpp"
     )
 
     if (COUT_TO_ANDROID_LOG)

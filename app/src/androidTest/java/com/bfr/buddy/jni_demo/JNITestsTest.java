@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 import com.bfr.buddy.jnidemo.DummyData;
+import com.bfr.buddy.jnidemo.DummyObject;
+import com.bfr.buddy.jnidemo.ExampleOfEnum;
 import com.bfr.buddy.jnidemo.MainActivity;
 
 /**
@@ -43,8 +45,44 @@ public class JNITestsTest {
 
     @Test
     public void test_readCustomData() {
-        DummyData dummyData = MainActivity.readCustomData(new DummyData(2, "val_str"));
+        DummyData dummyData = MainActivity.readCustomData(new DummyData(2, "val_str", ExampleOfEnum.VALUE_2));
         assertEquals(3, dummyData.i);
         assertEquals("val_str_cpp_addition", dummyData.str);
+    }
+
+    @Test
+    public void test_throwFromCpp() {
+        try {
+            MainActivity.throwFromCpp();
+            fail("MainActivity.throwFromCpp(); did not throw");
+        } catch (Exception e) {
+            assertEquals("Cpp exception!", e.getMessage());
+        }
+    }
+
+    @Test
+    public void test_throwFromCppWithReturn() {
+        assertEquals(46, MainActivity.throwFromCppWithReturn(45));
+
+        try {
+            MainActivity.throwFromCppWithReturn(-1);
+            fail("MainActivity.throwFromCppWithReturn(); did not throw");
+        } catch (Exception e) {
+            assertEquals("Value must not be negative", e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void test_syncObjectLivingBothInCppAndJavaWorld() {
+
+        // Create Cpp and Java associated object
+        DummyObject dummyObject = MainActivity.createCustomObject(48);
+
+        // Use Cpp algorithm and data
+        assertEquals(48, MainActivity.getValueStoredInCppSideOfDummyObject(dummyObject));
+
+        // Release the Cpp memory associated to the object
+        dummyObject.dispose();
     }
 }

@@ -1,14 +1,11 @@
-#ifndef ROBOTPLANNER_ANDROID_JOBJECTSTOCPPTYPES_HPP
-#define ROBOTPLANNER_ANDROID_JOBJECTSTOCPPTYPES_HPP
+#ifndef JNI_DEMO_ANDROID_JOBJECTSTOCPPTYPES_HPP
+#define JNI_DEMO_ANDROID_JOBJECTSTOCPPTYPES_HPP
 
 #include <map>
 #include <string>
 #include <jni.h>
-
-/**
- * All these jni conversions functions are called without thread protections.
- */
-
+#include "exampleofenum.hpp"
+#include "enumsindexes.hpp"
 
 
 /**
@@ -23,9 +20,10 @@ public:
             : _env(env),
               _object(object) {}
     ~shared_jobject() {
-        _env->DeleteLocalRef(_object);
+        //_env->DeleteLocalRef(_object);
     }
     jobject get() { return _object; }
+    JNIEnv* getEnv() { return _env; }
 
 private:
     JNIEnv* _env;
@@ -37,7 +35,12 @@ std::string toString(JNIEnv *env, jstring inputString);
 
 jobjectArray tojstringArray(JNIEnv *env, const std::vector<std::string> &pStrs);
 
-jint toDisposableWithIdId(JNIEnv *env, jobject object);
+jint getIdOfDisposableWithId(JNIEnv *env, jobject object);
+
+ExampleOfEnum toExampleOfEnum(
+        JNIEnv *env,
+        jobject exampleOfEnumJobj,
+        const SemanticEnumsIndexes &pSemanticEnumsIndexes);
 
 
-#endif // ROBOTPLANNER_ANDROID_JOBJECTSTOCPPTYPES_HPP
+#endif // JNI_DEMO_ANDROID_JOBJECTSTOCPPTYPES_HPP
